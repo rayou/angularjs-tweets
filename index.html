@@ -1,0 +1,45 @@
+<!doctype html>
+<html data-ng-app="myApp">
+<head>
+	<title>Angularjs Tweets</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+	<div data-ng-controller="tweetsController">
+	<div id="frm">
+		<b>Load Tweets for: </b>
+		<input type="text" placeholder="Twitter username" data-ng-model="username">
+		<button data-ng-click="loadTweets()">Go!</button>
+	</div>
+	<div id="content">
+		<div id="recent">
+			<h3>Recent Users</h3>
+			<ol>
+		        <li data-ng-repeat="user in users | reverse">
+		            <a href="#" title="view again" data-ng-click="searchAgain(user)">{{user}}</a> - 
+		            <a href="#" title="remove" data-ng-click="removeUser(user)">X</a>
+		        </li>
+			</ol>
+		</div>
+		<div id="tweets">
+			<h3>Tweets</h3>
+			<ul>
+		        <li data-ng-repeat="tweet in tweets">
+		            <img data-ng-src="{{tweet.user.profile_image_url}}" />
+		            <span>{{tweet.created_at}}</span>
+		            <h3>{{tweet.user.screen_name}}</h3>
+		            <p>{{tweet.text}}</p>
+		        </li>
+			</ul>
+		</div>
+	</div>
+
+	<div style="position:fixed;bottom:0;"> ported from <a href="http://www.adobe.com/devnet/html5/articles/flame-on-a-beginners-guide-to-emberjs.html" target="_blank">Flame on! A beginner's guide to Ember.js</a></div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+	<script src="app.js"></script>
+
+</body>
+</html>
